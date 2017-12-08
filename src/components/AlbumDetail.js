@@ -4,34 +4,60 @@ import Card from './Card';
 import CardSetion from './CardSection';
 
 const AlbumDetail = ({ album }) => {
-    const { headerContentStyle, thumbnailStyle } = styles;
-    const {title, artist, thumbnail_image } = album;
+    const { 
+        headerContentStyle, 
+        thumbnailStyle, 
+        thumbnailContainerStyle, 
+        headerTextStyle, 
+        imageStyle 
+    } = styles;
+    const { title, artist, thumbnail_image, image } = album;
     return (
         <Card>
             <CardSetion>
-                <View>
-                    <Image 
+                <View style={thumbnailContainerStyle}>
+                    <Image
                         style={thumbnailStyle}
-                        source={{ uri: thumbnail_image}} 
+                        source={{ uri: thumbnail_image }}
                     />
                 </View>
                 <View style={headerContentStyle}>
-                    <Text>{title}</Text>
+                    <Text style={headerTextStyle}>{title}</Text>
                     <Text>{artist}</Text>
                 </View>
+            </CardSetion>
+            <CardSetion>
+                <Image 
+                    source={{ uri:image }} 
+                    style={imageStyle}
+                />
             </CardSetion>
         </Card>
     );
 };
 
 const styles = {
-    headerContentStyle:{
+    headerContentStyle: {
         flexDirection: 'column',
         justifyContent: 'space-around'
+    },
+    headerTextStyle: {
+        fontSize: 18
     },
     thumbnailStyle: {
         height: 50,
         width: 50
+    },
+    thumbnailContainerStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 10,
+        marginRight: 10
+    },
+    imageStyle:{
+        height: 300,
+        flex: 1,
+        width: null
     }
 }
 
