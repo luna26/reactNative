@@ -1,6 +1,7 @@
 // Import a library to help a create a component
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
+import AlbumDetail  from './AlbumDetail';
 import axios from 'axios';
 
 // Create a component
@@ -13,11 +14,12 @@ class AlbumList extends Component {
     }
 
     renderAlbums(){
-        return this.state.albums.map(album => <Text>{album.title}</Text>);
-    }
+        return this.state.albums.map(album => 
+            <AlbumDetail key={album.title} album={album} />
+        );
+    } 
 
     render() {
-        console.log(this.state);
         return (
             <View>
                 {this.renderAlbums()}
@@ -26,5 +28,5 @@ class AlbumList extends Component {
     }
 }
 
-// Render is to the device
+// Export the class
 export default AlbumList;
